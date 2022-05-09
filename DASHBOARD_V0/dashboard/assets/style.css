@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bleu--logo--tdf: #0033FF;
+    --jaune--logo--tdf: #FFCC00;
+    --rouge--logo--tdf:#FF3602;
+    --violet--log--tdf:#CD00FF;
+    --rouge--sharepoint: #E94411;
+    --bleu--sharepoint: #0E93FF;
+    --font--gris--fonce: #303030;
+    --font--gris--clair: #666666;
+}
+
+
+html {
+    font-size: 62.5%;
+    background-color: #F2F2F2;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    color: var(--font--gris--clair);
+    font-size: 1.2rem;
+}
+
+/* ROW */
+.row {
+    margin-top: 2rem;
+}
+
+/*HEADER APP*/
+
+#id_h1_header_app {
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 700;
+    color: #FFF;
+    background-color: var(--font--gris--clair);
+    padding: 1rem;
+}
+
+/*H1, H2, H3*/
+
+H3 {
+    text-align: center;
+    font-weight: 700;
+    color: var(--font--gris--fonce);
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+/* CARD */
+
+.card {
+    margin: 1rem;
+    height: 15rem;
+    width: 30rem;
+}
+
+.card_header {
+    text-align: center;
+    font-size: 2rem;
+    height: 7rem;
+}
+
+.card_kpi {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+}
