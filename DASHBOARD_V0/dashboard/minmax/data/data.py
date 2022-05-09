@@ -6,10 +6,10 @@ from ...divers.fonctions_diverses import creation_dataframe_taux_conformite
 nom_fichier_stock = "stock.pickle"
 nom_fichier_annuaire = "annuaire_mag.pickle"
 
-with open(os.path.join(os.getcwd(), "dashboard/data", nom_fichier_stock), "rb") as f:
+with open(os.path.join(os.getcwd(), "DASHBOARD_V0/dashboard/data", nom_fichier_stock), "rb") as f:
     df_stock = pickle.load(f)
 
-with open(os.path.join(os.getcwd(), "dashboard/data", nom_fichier_annuaire), "rb") as f:
+with open(os.path.join(os.getcwd(), "DASHBOARD_V0/dashboard/data", nom_fichier_annuaire), "rb") as f:
     df_annuaire_mag = pickle.load(f)
 
 def creation_dataframe_valo_min_et_rupture_min(df):

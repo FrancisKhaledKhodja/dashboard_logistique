@@ -41,14 +41,10 @@ def card_creation(titre, kpi):
     return card
 
 
-def stat_sorties_article(data_frame, code_article=None, lib_motif=None, annees=None):
+def stat_sorties_article(data_frame, code_article, lib_motif=None):
     tcd = data_frame.copy()
     if lib_motif is not None and isinstance(lib_motif, str):
         lib_motif = [lib_motif]
-    if code_article is None:
-        code_article = "TDF000629"
-    if annees is not None:
-        tcd = tcd[(tcd["lib_motif"] >= annees[0]) & (tcd["annee"] <= annees[1])]
     if lib_motif is not None:
         tcd0 = pd.DataFrame()
         for motif in lib_motif:
@@ -56,15 +52,15 @@ def stat_sorties_article(data_frame, code_article=None, lib_motif=None, annees=N
         tcd = tcd0.copy()
         tcd0 = None
     tcd = tcd[tcd["code_article"] == code_article]
-    tcd = tcd.pivot_table(index=["annee-semaine", "lib_motif", "code_article", "libelle_article"], aggfunc={"qte_mvt": sum}).reset_index()
+    tcd = tcd.pivot_table(index=["dt_du_mvt_2", "lib_motif", "code_article", "libelle_article"], aggfunc={"qte_mvt": sum}).reset_index()
 
     data = []
     for motif in tcd["lib_motif"].unique():
         tcd0 = tcd[tcd["lib_motif"] == motif]
-        data.append(go.Bar(name=motif, x = tcd0["annee-semaine"], y=tcd0["qte_mvt"]))
+        data.append(go.Bar(name=motif, x = tcd0["dt_du_mvt_2"], y=tcd0["qte_mvt"]))
     
-    fig = go.Figure(data=data)
-    fig.update_layout(barmode='stack')
+    fig = go.Figure(data=data, )
+    fig.update_layout(barmode='stack', title="STATS DU CODE ART {}".format(code_article))
     fig.update_yaxes(range=[0, max(tcd["qte_mvt"]) * 1.2])
     return fig, tcd
 
@@ -79,7 +75,7 @@ def palmares_article(data_frame, nombre_mois_glissant, nombre_articles, type_mou
     data = []
     
     fig = px.bar(data_frame=tcd, 
-                 y = ["{} - {}".format(row["code_article"], row["libelle_article"]) for i, row in tcd[["code_article", "libelle_article"]].iterrows()], 
+                 y = ["{} - {}".format(row["code_article"], row["libelle_article"][:60]) for i, row in tcd[["code_article", "libelle_article"]].iterrows()], 
                  x = tcd["qte_mvt"], 
                  orientation="h")
     

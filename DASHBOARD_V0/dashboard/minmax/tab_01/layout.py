@@ -1,3 +1,4 @@
+from turtle import width
 import dash_bootstrap_components as dbc
 from ..data.data import nombre_mag_avec_min, nombre_ref_avec_min, somme_qte_min, valeur_des_min
 from ..data.data import df_stock_good_m
@@ -34,10 +35,10 @@ layout = dbc.Container([
         dbc.Col([
             html.H3("MONTANT DES MIN MAX PAR TYPE DE DEPOT"),
             dcc.Graph(figure=graph_minmax_par_type_depot)
-        ]),
+        ], width=6),
         dbc.Col([
             html.H3("QUANTITE DES MIN PAR PROPRIETAIRE"),
             dcc.Graph(figure=graph_minmax_par_proprietaire),
-        ])
+        ], width=6)
     ])
 ], fluid=True)
